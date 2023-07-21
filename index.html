@@ -76,9 +76,9 @@ document.write(password());
 				var minute=date.getMinutes();
 				minute=minute<10?"0"+minute:minute;
 				var second=date.getSeconds();
-				second=second<10?"0"+second:second;
-			
-				var result=year+"-"+month+"-"+day+" "+week+" "+hour+":"+minute+":"+second;
+				second=second<10?"0"+second:second;			
+				<font color="white">
+	                        var result=year+"-"+month+"-"+day+" "+week+" "+hour+":"+minute+":"+second;
 				document.getElementById("time").innerHTML=result;
 			}
 			
@@ -86,8 +86,7 @@ document.write(password());
 			setInterval("show()",1000);
 			
 		</script>
-	
-	</body>
+	</body><br/>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <font color="white"> 本站访问量<span id="busuanzi_value_site_pv"></span>次</font><br/>
 <font color="white"> 本站访客数<span id="busuanzi_value_site_uv"></span>人次</font>
