@@ -26,66 +26,6 @@ document.write(password());
    <body>
      <font size="9" color="white">Welcome to my website!</font>
    </body><br/>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		
-	</head>
-	<body>
-		<span id="time"></span>
-		<script>
-			function show(){
-				var date=new Date();
-				var year=date.getFullYear();
-				var month=date.getMonth()+1;
-				month=month<10?"0"+month:month;
-				var day=date.getDate();
-				day=day<10?"0"+day:day;
-				var week=date.getDay();
-				/*
-				switch(week){
-					case 1:
-						week="星期一";
-						break;
-					case 2:
-						week="星期二";
-						break;
-					case 3:
-						week="星期三";
-						break;
-					case 4:
-						week="星期四";
-						break;
-					case 5:
-						week="星期五";
-						break;
-					case 6:
-						week="星期六";
-						break;
-					case 0:
-						week="星期日";
-						break;
-				}*/
-                
-                //可将switch替换为：
-				week="日一二三四五六".charAt(week);
-				week="星期"+week;
-			
-				var hour=date.getHours();
-				hour=hour<10?"0"+hour:hour;
-				var minute=date.getMinutes();
-				minute=minute<10?"0"+minute:minute;
-				var second=date.getSeconds();
-				second=second<10?"0"+second:second;			
-	                        <font colr="white"> var result=year+"-"+month+"-"+day+" "+week+" "+hour+":"+minute+":"+second;</font>
-				document.getElementById("time").innerHTML=result;
-			}
-			
-			show();
-			setInterval("show()",1000);
-			
-		</script>
-	</body><br/>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <font color="white"> 本站访问量<span id="busuanzi_value_site_pv"></span>次</font><br/>
 <font color="white"> 本站访客数<span id="busuanzi_value_site_uv"></span>人次</font>
@@ -157,8 +97,7 @@ function clickEffect() {
   canvas.setAttribute("style", "width: 100%; height: 100%; top: 0; left: 0; z-index: 99999; position: fixed; pointer-events: none;");
   const pointer = document.createElement("span");
   pointer.classList.add("pointer");
-  document.body.appendChild(pointer);
- 
+  document.body.appendChild(pointer); 
   if (canvas.getContext && window.addEventListener) {
     ctx = canvas.getContext("2d");
     updateSize();
@@ -190,8 +129,6 @@ function clickEffect() {
   } else {
     console.log("canvas or addEventListener is unsupported!");
   }
- 
- 
   function updateSize() {
     canvas.width = window.innerWidth * 2;
     canvas.height = window.innerHeight * 2;
@@ -233,18 +170,15 @@ function clickEffect() {
       this.vx *= 0.9;
       this.vy *= 0.9;
     }
-  }
- 
+  } 
   function pushBalls(count = 1, x = origin.x, y = origin.y) {
     for (let i = 0; i < count; i++) {
       balls.push(new Ball(x, y));
     }
-  }
- 
+  } 
   function randBetween(min, max) {
     return Math.floor(Math.random() * max) + min;
   }
- 
   function loop() {
     ctx.fillStyle = "rgba(255, 255, 255, 0)";
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -264,8 +198,7 @@ function clickEffect() {
     }
     removeBall();
     requestAnimationFrame(loop);
-  }
- 
+  } 
   function removeBall() {
     for (let i = 0; i < balls.length; i++) {
       let b = balls[i];
@@ -277,5 +210,47 @@ function clickEffect() {
 }
 clickEffect();//调用特效函数
 </script>
+</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Cascading Style Sheet/style.css">
+</head>
+<body>
+    <div class="clock_box">
+        <div class="clock">
+            <p id="time"></p>
+        </div>
+    </div>
+    <script>
+        // 获取页面id=time的元素（P元素<p id="time">12:12:12 AM</p>）
+        var time = document.querySelector("#time");
+        // 定义函数传入time元素
+        function up(time_el) {
+            // 获取当前时间
+            let date = new Date();
+            // 获取时分秒
+            let h = date.getHours();
+            let m = date.getMinutes();
+            let s = date.getSeconds();
+            // 上午与下午
+            let day_night = "AM";
+            // 计算上午与下午
+            if (h > 12) {
+                h = h - 12;
+                day_night = "PM";
+            }
+            // 如果时间小于10则前面补充0
+            if (h < 10) { h = "0" + h; }
+            if (m < 10) { m = "0" + m; }
+            if (s < 10) { s = "0" + s; }
+            // 拼接时间并且赋值给time元素的文本中，从而显示
+            time_el.textContent = h + ":" + m + ":" + s + " " + day_night;
+        }
+        // 定时器，每秒执行一次实现更新
+        setInterval(() => {
+            up(time);
+        }, 1000);
+    </script>
 </body>
 </html>
